@@ -121,7 +121,7 @@ class MainActivity : ComponentActivity() {
     private fun getInstalledApps(){
         try {
             installedApps = emptyList()
-            installedApps = packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
+            installedApps = packageManager.getInstalledApplications(PackageManager.MATCH_ALL)
                 .filter {
                     // 过滤系统应用，只显示用户安装的应用
                     it.flags and ApplicationInfo.FLAG_SYSTEM == 0
