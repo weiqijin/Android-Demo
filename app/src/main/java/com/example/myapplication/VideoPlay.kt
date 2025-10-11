@@ -52,14 +52,6 @@ class VideoPlay : AppCompatActivity() {
         }
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            finish()
-            return true
-        }
-        return super.onKeyDown(keyCode, event)
-    }
-
     private fun playVideo(url: Uri) {
         videoView.setVideoURI(url)
         videoView.start()
