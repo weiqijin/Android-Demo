@@ -100,10 +100,15 @@ class AppList : ComponentActivity() {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
+        refreshLayout.isRefreshing = false
         // 清理资源
         handler.removeCallbacksAndMessages(null)
-        unregisterReceiver(packageChangeReceiver)
+        try {
+            unregisterReceiver(packageChangeReceiver)
+        } catch (e: IllegalArgumentException) {
+            Log.w("MainActivity", "Broadcast receiver already unregistered")
+        }
+        super.onDestroy()
     }
 
     override fun finish() {
