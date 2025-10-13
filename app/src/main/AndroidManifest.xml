@@ -45,7 +45,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".VideoPlay" />
-        <activity android:name=".AppList" />
+        <activity android:name=".AppList"
+            android:launchMode="standard"/>
 
 <!--        &lt;!&ndash; 接收应用安装/卸载广播 &ndash;&gt;-->
 <!--        <receiver-->
