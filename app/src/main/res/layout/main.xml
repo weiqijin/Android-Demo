@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-thin"
-        android:text="Welcome Demo!"
+        android:text="@string/welcome_demo"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="获取应用列表"
+        android:text="@string/app_list_name"
         android:textSize="20sp" />
 
     <Button
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="播放视频"
+        android:text="@string/video_play_name"
         android:textSize="20sp" />
 
     <Button
@@ -37,6 +37,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="聊天"
+        android:text="@string/chat_name"
         android:textSize="20sp" />
 </LinearLayout>

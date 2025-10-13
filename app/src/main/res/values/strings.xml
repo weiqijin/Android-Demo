@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="app_icon" />
+    <string name="welcome_demo">Welcome Demo!</string>
+    <string name="app_list_name">获取应用列表</string>
+    <string name="video_play_name">播放视频</string>
+    <string name="chat_name">聊天</string>
 </resources>
