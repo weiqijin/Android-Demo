@@ -7,10 +7,11 @@ import android.view.KeyEvent
 import android.widget.Button
 import android.widget.EditText
 import android.widget.VideoView
+import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 
-class VideoPlay : AppCompatActivity() {
+class VideoPlay : ComponentActivity() {
     private lateinit var videoView: VideoView
     private lateinit var inputUrl: EditText
     private lateinit var playButton: Button

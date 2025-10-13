@@ -17,10 +17,11 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
+import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
-class AppList : AppCompatActivity() {
+class AppList : ComponentActivity() {
     private var installedApps: List<ApplicationInfo> = emptyList()
     private lateinit var adapter: AppListAdapter
     private lateinit var refreshLayout: SwipeRefreshLayout
