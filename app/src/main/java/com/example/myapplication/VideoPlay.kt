@@ -57,4 +57,5 @@ class VideoPlay : ComponentActivity() {
         videoView.setVideoURI(url)
         videoView.start()
     }
+
 }
