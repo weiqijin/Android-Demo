@@ -10,14 +10,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
 
-        findViewById<Button>(R.id.appListButton).setOnClickListener {
-            // Handle button click
-            startActivity(Intent(this, AppList::class.java))
-        }
-
-        findViewById<Button>(R.id.videoPlayerButton).setOnClickListener {
-            // Handle button click
-            startActivity(Intent(this, VideoPlay::class.java))
-        }
+//        findViewById<Button>(R.id.appListButton).setOnClickListener {
+//            // Handle button click
+//            startActivity(Intent(this, AppList::class.java))
+//        }
+//
+//        findViewById<Button>(R.id.videoPlayerButton).setOnClickListener {
+//            // Handle button click
+//            startActivity(Intent(this, VideoPlay::class.java))
+//        }
     }
 }
