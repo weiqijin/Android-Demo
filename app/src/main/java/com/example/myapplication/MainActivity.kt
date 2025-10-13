@@ -10,6 +10,18 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
+
+        val appListButton = findViewById<Button>(R.id.appListButton)
+        appListButton.setOnClickListener {
+            val intent = Intent(this, AppList::class.java)
+            startActivity(intent)
+        }
+
+        val videoPlayButton = findViewById<Button>(R.id.videoPlayerButton)
+        videoPlayButton.setOnClickListener {
+            val intent = Intent(this, VideoPlay::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onStart() {
