@@ -44,8 +44,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".VideoPlay" />
-        <activity android:name=".AppList" />
+        <activity android:name=".VideoPlay"
+            android:exported="false"/>
+        <activity android:name=".AppList"
+            android:exported="false"/>
 
 <!--        &lt;!&ndash; 接收应用安装/卸载广播 &ndash;&gt;-->
 <!--        <receiver-->
