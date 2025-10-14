@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.widget.Button
 import android.widget.EditText
+import android.widget.MediaController
 import android.widget.VideoView
 import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
@@ -55,7 +56,14 @@ class VideoPlay : ComponentActivity() {
 
     private fun playVideo(url: Uri) {
         videoView.setVideoURI(url)
-        videoView.start()
+        setUpMediaController()
+    }
+
+    private fun setUpMediaController() {
+        val mediaController = MediaController(this)
+        mediaController.setAnchorView(videoView)
+        videoView.setMediaController(mediaController)
+        videoView.setOnPreparedListener { it.start() }
     }
 
 }
