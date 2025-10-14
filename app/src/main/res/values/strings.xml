@@ -5,4 +5,6 @@
     <string name="app_list_name">获取应用列表</string>
     <string name="video_play_name">播放视频</string>
     <string name="chat_name">聊天</string>
+    <string name="chat_edit">输入消息</string>
+    <string name="chat_send">发送</string>
 </resources>
