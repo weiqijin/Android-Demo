@@ -22,6 +22,12 @@ class MainActivity : ComponentActivity() {
             val intent = Intent(this, VideoPlay::class.java)
             startActivity(intent)
         }
+
+        val chatButton = findViewById<Button>(R.id.chatButton)
+        chatButton.setOnClickListener {
+            val intent = Intent(this, ChatActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onStart() {
