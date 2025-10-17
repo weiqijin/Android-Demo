@@ -8,15 +8,16 @@ import java.net.InetSocketAddress
 import java.net.NetworkInterface
 
 class ChatServer(port: Int) : WebSocketServer(InetSocketAddress(port)) {
-    private val connections = mutableListOf<WebSocket>()
+    private val connections = mutableMapOf<String, WebSocket>()
     private val messagesHistory = mutableListOf<String>()
 
     override fun onOpen(
         conn: WebSocket,
         handshake: ClientHandshake
     ) {
-        connections.add(conn)
-        conn.send("CONNECTED|${messagesHistory.joinToString("\n")}")
+        val userId = handshake.getFieldValue("user-id") ?: "unknown"
+        connections[userId] = conn
+        conn.send("HISTORY|${messagesHistory.joinToString("||")}")
     }
 
     override fun onClose(
@@ -25,12 +26,12 @@ class ChatServer(port: Int) : WebSocketServer(InetSocketAddress(port)) {
         reason: String,
         remote: Boolean
     ) {
-        connections.remove(conn)
+        connections.values.remove(conn)
     }
 
     override fun onMessage(conn: WebSocket, message: String) {
         messagesHistory.add(message)
-        connections.forEach { it.send(message) }
+        connections.values.forEach { it.send(message) }
     }
 
     override fun onError(conn: WebSocket?, ex: Exception) {
