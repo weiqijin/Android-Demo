@@ -24,7 +24,7 @@ class ChatActivity : ComponentActivity() {
 
         // Initialize WebSocket connection
         val client = OkHttpClient()
-        val request = okhttp3.Request.Builder().url("wss://your-websocket-url").build()
+        val request = okhttp3.Request.Builder().url("wss://10.10.157.17:8888").build()
         webSocket = client.newWebSocket(request, object : WebSocketListener() {
             override fun onMessage(webSocket: WebSocket, text: String) {
                 runOnUiThread {
