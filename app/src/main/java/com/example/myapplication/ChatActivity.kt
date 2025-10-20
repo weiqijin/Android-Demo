@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.ui.theme.Message
 import okhttp3.OkHttpClient
 import okhttp3.WebSocket
