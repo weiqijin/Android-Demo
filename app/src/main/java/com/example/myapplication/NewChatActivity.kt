@@ -76,7 +76,7 @@ class NewChatActivity : ComponentActivity() {
     }
 
     private fun setupWebSocketClientWithRetry() {
-        val serverUri = "ws://10.0.2.2:$serverPort" // 使用模拟器本地地址
+        val serverUri = "ws://127.0.0.1:$serverPort" // 使用模拟器本地地址
 
         chatClient = ChatClient(this, serverUri, currentUser).apply {
             onMessageReceived = { message ->
