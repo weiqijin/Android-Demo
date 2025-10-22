@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.ChatBinding
@@ -18,6 +19,9 @@ class NewChatActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         binding = ChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // 防止点击输入框时布局变化导致返回
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
 
         initializeData()
         setupUI()
@@ -56,6 +60,12 @@ class NewChatActivity : ComponentActivity() {
         binding.btnBack.setOnClickListener {
             finish()
         }
+
+        // 添加触摸监听，防止意外操作
+        binding.root.setOnTouchListener { _, _ ->
+            // 消耗触摸事件，防止传递到其他组件
+            false
+        }
     }
 
     private fun setupWebSocketClient() {
@@ -88,6 +98,10 @@ class NewChatActivity : ComponentActivity() {
         if (messageText.isNotEmpty()) {
             chatClient.sendMessage(targetUser, messageText)
             binding.etMessage.text.clear()
+
+            // 发送后隐藏键盘，避免布局变化
+            val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(binding.etMessage.windowToken, 0)
         }
     }
 
