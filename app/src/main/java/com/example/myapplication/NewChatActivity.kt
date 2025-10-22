@@ -21,7 +21,8 @@ class NewChatActivity : ComponentActivity() {
         setContentView(binding.root)
 
         // 防止点击输入框时布局变化导致返回
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN or
+                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 
         initializeData()
         setupUI()
@@ -52,8 +53,10 @@ class NewChatActivity : ComponentActivity() {
         binding.etMessage.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 binding.rvMessages.postDelayed({
-                    binding.rvMessages.smoothScrollToPosition(messageAdapter.itemCount - 1)
-                }, 100)
+                    if (messageAdapter.itemCount > 0) {
+                        binding.rvMessages.smoothScrollToPosition(messageAdapter.itemCount - 1)
+                    }
+                }, 200)
             }
         }
 
@@ -75,7 +78,9 @@ class NewChatActivity : ComponentActivity() {
             onMessageReceived = { message ->
                 runOnUiThread {
                     messageAdapter.addMessage(message)
-                    binding.rvMessages.smoothScrollToPosition(messageAdapter.itemCount - 1)
+                    if (messageAdapter.itemCount > 0) {
+                        binding.rvMessages.smoothScrollToPosition(messageAdapter.itemCount - 1)
+                    }
                 }
             }
 

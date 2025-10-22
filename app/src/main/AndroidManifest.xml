@@ -50,10 +50,13 @@
         <activity android:name=".AppList"
             android:launchMode="standard"/>
         <activity android:name=".ChatMainActivity"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity android:name=".NewChatActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:configChanges="orientation|screenSize|keyboardHidden|keyboard"/>
 
 <!--        &lt;!&ndash; 接收应用安装/卸载广播 &ndash;&gt;-->
 <!--        <receiver-->
