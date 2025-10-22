@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
 
         val chatButton = findViewById<Button>(R.id.chatButton)
         chatButton.setOnClickListener {
-            val intent = Intent(this, ChatActivity::class.java)
+            val intent = Intent(this, ChatMainActivity::class.java)
             startActivity(intent)
         }
     }
