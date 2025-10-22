@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="本地聊天应用"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="60dp"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请选择用户身份进入聊天"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginBottom="40dp"
+        android:textColor="@color/gray" />
+
+    <Button
+        android:id="@+id/btnUserA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="用户A"
+        android:textSize="18sp"
+        android:backgroundTint="@color/blue_500"
+        android:textColor="@color/white"
+         />
+
+    <Button
+        android:id="@+id/btnUserB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:text="用户B"
+        android:textSize="18sp"
+        android:backgroundTint="@color/green_500"
+        android:textColor="@color/white"
+         />
+
+    <Button
+        android:id="@+id/btnViewHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="查看聊天历史"
+        android:textSize="16sp"
+        android:backgroundTint="@color/gray_200"
+        android:textColor="@color/black"
+         />
+
+</LinearLayout>

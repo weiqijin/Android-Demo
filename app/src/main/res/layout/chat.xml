@@ -2,45 +2,92 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
-    <Button
-        android:id="@+id/switch_button"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"
+    <!-- 顶部栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/switch_button" />
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="@color/blue_500">
 
-    <!-- Your layout content goes here -->
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="返回"
+            android:textColor="@color/white"
+            android:background="@android:color/transparent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvCurrentUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvTargetUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvConnectionStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="连接状态"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <!-- 消息列表 -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/rvMessages"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:padding="8dp" />
 
+    <!-- 输入区域 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp" >
+        android:padding="16dp"
+        android:background="@color/gray_100">
 
-        <!-- Add your buttons or other elements here -->
         <EditText
-            android:id="@+id/chat_edit_text"
+            android:id="@+id/etMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/chat_edit" />
+            android:hint="输入消息..."
+            android:maxLines="3"
+            android:background="@color/white" />
 
         <Button
-            android:id="@+id/send_button"
+            android:id="@+id/btnSend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/chat_send" />
+            android:text="发送"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/blue_500"
+            android:textColor="@color/white" />
 
     </LinearLayout>
-
 
 </LinearLayout>

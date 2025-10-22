@@ -36,11 +36,13 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding = true
     }
 }
 
 dependencies {
 
+    implementation(libs.gson)
     implementation(libs.okhttp)
     implementation(libs.java.websocket)
     implementation(libs.androidx.core.ktx)

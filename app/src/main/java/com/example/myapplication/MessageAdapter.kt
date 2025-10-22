@@ -11,30 +11,64 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.ui.theme.Message
+import com.example.myapplication.ui.theme.ChatMessage
 import androidx.core.graphics.toColorInt
+import com.example.myapplication.databinding.ItemChatBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
+class MessageAdapter(private val currentUser: String) :
+    RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
-class MessageAdapter(private val messages: List<Message>) : RecyclerView.Adapter<MessageAdapter.ViewHolder>() {
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val messageTextView = itemView.findViewById<TextView>(R.id.text_message)
-        val messageCardView = itemView.findViewById<CardView>(R.id.card_message)
+    private val messages = mutableListOf<ChatMessage>()
+
+    inner class MessageViewHolder(private val binding: ItemChatBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(message: ChatMessage) {
+            binding.tvMessageContent.text = message.content
+            binding.tvMessageTime.text = formatTime(message.timestamp)
+
+            if (message.from == currentUser) {
+                // 自己发送的消息，靠右显示
+                binding.messageCard.setCardBackgroundColor(
+                    binding.root.resources.getColor(android.R.color.holo_blue_light, null)
+                )
+                binding.tvSenderName.text = "我"
+                binding.tvSenderName.visibility = View.VISIBLE
+            } else {
+                // 对方发送的消息，靠左显示
+                binding.messageCard.setCardBackgroundColor(
+                    binding.root.resources.getColor(android.R.color.holo_green_light, null)
+                )
+                binding.tvSenderName.text = message.from
+                binding.tvSenderName.visibility = View.VISIBLE
+            }
+        }
     }
 
-    override fun getItemCount() = messages.size
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_chat, parent, false)
-        return ViewHolder(itemView)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
+        val binding = ItemChatBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return MessageViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val message = messages[position]
-        holder.messageTextView.text = message.content
-        val params = holder.messageCardView.layoutParams as FrameLayout.LayoutParams
-        params.gravity = if (message.isSent) Gravity.END else Gravity.START
-        holder.messageCardView.setCardBackgroundColor(if (message.isSent) "#E3F2FD".toColorInt() else Color.WHITE)
+    override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
+        holder.bind(messages[position])
     }
 
+    override fun getItemCount(): Int = messages.size
+
+    fun addMessage(message: ChatMessage) {
+        messages.add(message)
+        notifyItemInserted(messages.size - 1)
+    }
+
+    private fun formatTime(timestamp: Long): String {
+        return SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date(timestamp))
+    }
 }
