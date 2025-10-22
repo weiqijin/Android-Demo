@@ -37,6 +37,11 @@ class MessageAdapter(private val currentUser: String) :
                 )
                 binding.tvSenderName.text = "我"
                 binding.tvSenderName.visibility = View.VISIBLE
+                binding.messageCard.layoutParams =
+                    (binding.messageCard.layoutParams as? ViewGroup.MarginLayoutParams)?.apply {
+                        marginStart = 100
+                        marginEnd = 16
+                    }
             } else {
                 // 对方发送的消息，靠左显示
                 binding.messageCard.setCardBackgroundColor(
@@ -44,6 +49,11 @@ class MessageAdapter(private val currentUser: String) :
                 )
                 binding.tvSenderName.text = message.from
                 binding.tvSenderName.visibility = View.VISIBLE
+                binding.messageCard.layoutParams =
+                    (binding.messageCard.layoutParams as? ViewGroup.MarginLayoutParams)?.apply {
+                        marginStart = 16
+                        marginEnd = 100
+                    }
             }
         }
     }
