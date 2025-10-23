@@ -27,8 +27,15 @@ class ChatMainActivity : ComponentActivity() {
     }
 
     private fun startChatServer() {
-        chatServer = ChatServer(this, SERVER_PORT)
-        chatServer?.start()
+        try {
+            if (chatServer == null){
+                chatServer = ChatServer(this, SERVER_PORT)
+                chatServer?.start()
+            }
+        } catch (e: Exception) {
+            println("启动WebSocket服务器失败: ${e.message}")
+        }
+
     }
 
     private fun setupUI() {
@@ -47,6 +54,10 @@ class ChatMainActivity : ComponentActivity() {
     }
 
     private fun openChatInterface(currentUser: String, targetUser: String) {
+        if (chatServer == null){
+            startChatServer()
+        }
+
         val intent = Intent(this, NewChatActivity::class.java).apply {
             putExtra("CURRENT_USER", currentUser)
             putExtra("TARGET_USER", targetUser)
