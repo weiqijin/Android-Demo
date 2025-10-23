@@ -62,6 +62,7 @@ class ChatServer(private val context: Context, port: Int) : WebSocketServer(Inet
 
     override fun onError(conn: WebSocket, ex: Exception) {
         println("WebSocket错误: ${ex.message}")
+        println("连接状态: ${conn?.let { "有效" } ?: "null"}")
         ex.printStackTrace()
     }
 
@@ -94,6 +95,16 @@ class ChatServer(private val context: Context, port: Int) : WebSocketServer(Inet
         return chatHistory.filter {
             (it.from == user1 && it.to == user2) || (it.from == user2 && it.to == user1)
         }.sortedBy { it.timestamp }
+    }
+
+    fun stopServerSafely() {
+        try {
+            connections.clear()
+            stop(1000)
+            println("WebSocket服务器已安全停止")
+        } catch (e: Exception) {
+            println("停止服务器时发生错误: ${e.message}")
+        }
     }
 }
 

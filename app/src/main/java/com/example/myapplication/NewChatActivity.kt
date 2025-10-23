@@ -95,7 +95,10 @@ class NewChatActivity : ComponentActivity() {
             }
         }
 
-        chatClient.connect()
+        // 延迟连接，确保服务器已准备就绪
+        connectionHandler.postDelayed({
+            chatClient.connect()
+        }, 500)
         // 启动连接状态监控
         startConnectionMonitoring()
     }

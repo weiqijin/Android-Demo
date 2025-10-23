@@ -7,7 +7,7 @@ import com.example.myapplication.databinding.ChatMainBinding
 
 class ChatMainActivity : ComponentActivity() {
     private lateinit var binding: ChatMainBinding
-    private lateinit var chatServer: ChatServer
+    private var chatServer: ChatServer? = null
 
     companion object {
         const val SERVER_PORT = 8887
@@ -28,7 +28,7 @@ class ChatMainActivity : ComponentActivity() {
 
     private fun startChatServer() {
         chatServer = ChatServer(this, SERVER_PORT)
-        chatServer.start()
+        chatServer?.start()
     }
 
     private fun setupUI() {
@@ -56,14 +56,14 @@ class ChatMainActivity : ComponentActivity() {
     }
 
     private fun showHistoryDialog() {
-        val history = chatServer.getHistoryForUsers(USER_A, USER_B)
-        val historyText = history.joinToString("\n") { msg ->
+        val history = chatServer?.getHistoryForUsers(USER_A, USER_B)
+        val historyText = history?.joinToString("\n") { msg ->
             "[${formatTime(msg.timestamp)}] ${msg.from}: ${msg.content}"
         }
 
         android.app.AlertDialog.Builder(this)
             .setTitle("聊天历史")
-            .setMessage(if (historyText.isEmpty()) "暂无聊天记录" else historyText)
+            .setMessage(if (historyText?.isEmpty() == true) "暂无聊天记录" else historyText)
             .setPositiveButton("确定", null)
             .show()
     }
@@ -74,6 +74,27 @@ class ChatMainActivity : ComponentActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        chatServer.stop()
+        if (isFinishing){
+            chatServer?.stopServerSafely()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        chatServer?.stopServerSafely()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (chatServer == null){
+            startChatServer()
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (chatServer == null){
+            startChatServer()
+        }
     }
 }
