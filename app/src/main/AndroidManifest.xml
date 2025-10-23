@@ -39,8 +39,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".ChatMainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -49,7 +51,7 @@
         <activity android:name=".VideoPlay" />
         <activity android:name=".AppList"
             android:launchMode="standard"/>
-        <activity android:name=".ChatMainActivity"
+        <activity android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"
             android:exported="false"
             android:configChanges="orientation|screenSize|keyboardHidden"/>
